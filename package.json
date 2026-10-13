@@ -12,7 +12,9 @@
     "test:e2e:ui": "playwright test --ui",
     "setup:local": "node scripts/setup-local.mjs",
     "dev:all": "node scripts/dev-all.mjs",
-    "verify": "npm run typecheck && npm run build"
+    "verify": "npm run typecheck && npm run build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@tanstack/react-query": "5.104.2",
@@ -27,7 +29,10 @@
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "prettier": "^3.9.10",
     "typescript": "^5"
   },
-  "engines": { "node": ">=22" }
+  "engines": {
+    "node": ">=22"
+  }
 }

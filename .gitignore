@@ -1,0 +1,15 @@
+node_modules/
+.next/
+out/
+.env
+.env.*
+!.env.example
+.netlify/
+.vercel/
+backend/
+test-results/
+playwright-report/
+.local/
+*.tsbuildinfo
+*.log
+tmp/

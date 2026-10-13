@@ -6,7 +6,7 @@ The frontend and backend are separate applications and repositories. This checko
 
 1. Provision a MongoDB database and a dedicated database user for the application.
 2. Deploy `sajeeb-ahmeed/Doctor-Tracker-API` as a standalone Node web service using the backend's `render.yaml` blueprint or equivalent hosting.
-3. Use `npm ci && npm run build` as the build command and `npm start` as the start command. Use Node 24.
+3. Use `npm ci --include=dev && npm run build` as the build command and `npm start` as the start command. Use Node 24. The explicit include keeps TypeScript and type definitions available during compilation when `NODE_ENV=production` is configured.
 4. Set `NODE_ENV=production`, `MONGODB_URI`, a random `SESSION_SECRET` of at least 32 characters, `ADMIN_EMAIL`, `ADMIN_NAME`, and a strong `ADMIN_PASSWORD` for the initial admin account.
 5. Set `FRONTEND_ORIGIN` to the exact HTTPS frontend origin. For several permitted origins, use the format documented in the backend README.
 6. Set `SEED_DEMO=true` only if synthetic example records are wanted in the deployment; disable it afterward.

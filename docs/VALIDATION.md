@@ -21,6 +21,8 @@ The backend suite additionally verifies validation and invalid identifiers, rela
 
 ## Persistence and query evidence
 
+An independent fresh frontend clone completed `npm ci`, the unmodified default `npm run setup:local`, `npm run typecheck`, and `npm run build`. The setup script automatically cloned the backend repository, installed its dependencies, generated both environment files, enabled the two local origins and synthetic seeding, and generated a session secret. Existing project files were not used as a substitute for the installation steps.
+
 The combined local launcher was stopped and restarted. Existing doctor/patient IDs and record counts matched the pre-restart values, and the administrator session remained valid. The local MongoDB uses persistent WiredTiger storage rather than replacing data with frontend mocks.
 
 A representative selective prefix search against 251 doctors used `IXSCAN` on `searchTokens_1`, examining 2 index keys and 1 document for 1 result. This is query-plan evidence for a controlled fixture, not a production-scale performance benchmark. See the backend repository's `docs/query-plan.md` for reproduction and limits.

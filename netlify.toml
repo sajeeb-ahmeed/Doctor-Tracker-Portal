@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Netlify automatically supplies its current OpenNext adapter.
+# Set BACKEND_URL in Netlify environment settings for both Builds and Functions.

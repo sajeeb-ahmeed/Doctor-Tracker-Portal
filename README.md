@@ -95,11 +95,11 @@ Separate frontend and backend hosting commonly introduces cross-site cookie beha
 
 Both the server-rendered layout and Express verify authentication. Hiding controls alone would not protect data. The tradeoff is one forwarding hop and the need to update `BACKEND_URL` at build time; those deployment steps are documented.
 
-### 2. Database-side queries and targeted client cache invalidation
+### 2. Database-side queries and server-data caching
 
 Directories request only a bounded page with server-side search and filters. Totals are counted against the same filter, and sorting uses creation date plus an ID tie-breaker. MongoDB indexes support the main filtering/sorting patterns; dashboard results are computed from persisted records rather than static frontend arrays. The backend README describes index choices, search behavior, pagination limits, and scaling tradeoffs.
 
-React Query caches responses by their filter parameters. Mutations invalidate relevant lists, metadata, profiles, and dashboard queries so the interface reflects actual database changes. This avoids a second global copy of server records and makes loading/error states explicit.
+React Query caches responses by their filter parameters. Successful mutations call `invalidateQueries()` across the cached queries: active queries refetch immediately, and inactive queries become stale for their next use. This keeps lists, metadata, profiles, and dashboard data consistent after changes. The broad invalidation is simple for this small portal; more selective query keys would reduce refetching as the application grows. Server records stay in the query cache rather than a second global state store, while form input stays local to each component.
 
 ## Project structure
 
@@ -131,7 +131,7 @@ npm test
 
 Browser tests cover anonymous access, invalid credentials, persistent doctor/patient workflows, combined filters, pagination, dashboard changes, logout/API authorization, and mobile navigation/overflow. Backend tests use a separate test database. Browser tests create uniquely named synthetic doctors because deleting doctors is outside the specified scope; they should run against a development/test database.
 
-Formatting: `npm run format` and `npm run format:check`. CI runs type checking and a production frontend build. Detailed outcomes are recorded in `docs/VALIDATION.md` after verification.
+Formatting: `npm run format` and `npm run format:check`. CI runs type checking and a production frontend build. Detailed outcomes are recorded in `docs/VALIDATION.md` after verification. The [requirements checklist](docs/REQUIREMENTS_CHECKLIST.md) maps the PDF and submission email to source, tests, and documentation evidence, including outstanding delivery items.
 
 ## Visual evidence
 

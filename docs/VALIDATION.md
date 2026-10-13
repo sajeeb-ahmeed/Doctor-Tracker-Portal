@@ -10,14 +10,14 @@ Verified on 13 October 2026 with Node.js 24.18.0 on Windows, Next.js 16.4.0, Rea
 | Frontend optimized production build                        | Passed; protected portal routes render dynamically               |
 | Frontend formatting check                                  | Passed; generated Next.js types excluded                         |
 | Backend strict TypeScript check and production compilation | Passed                                                           |
-| Backend real-MongoDB integration suite                     | 10 tests passed                                                  |
+| Backend real-MongoDB integration suite                     | 16 tests passed                                                  |
 | Playwright desktop/mobile and API suite                    | 9 tests passed in the final full run                             |
 | Installed dependency audits                                | No reported vulnerabilities in either repository at installation |
 | GitHub Actions                                             | Frontend and API verification completed successfully             |
 
 The browser suite exercises anonymous redirection, incorrect credentials, login/logout, CSRF verification, persistent doctor/patient creation, patient editing and email clearing, deletion, combined search/date/condition filters, pagination, final-page deletion, dashboard count changes, and mobile navigation/page overflow.
 
-The backend suite additionally verifies validation and invalid identifiers, relationship integrity, inclusive UTC dates, partial updates without unrelated defaults, indexed token-prefix search, and search-token backfill.
+The backend suite additionally verifies validation and invalid identifiers, relationship integrity, inclusive UTC dates, partial updates without unrelated defaults, indexed token-prefix search, and search-token backfill. Regression coverage also checks phone numbers contain 7–15 real digits and that email addresses are trimmed and normalized on creation and updates, while an optional email can be cleared.
 
 ## Persistence and query evidence
 
@@ -35,4 +35,4 @@ Desktop and mobile screenshots are included in `docs/screenshots/` and were visu
 
 Automated tests created uniquely named synthetic records. Temporary patients were removed, and unassigned test doctors were removed using their exact test name/email patterns. The delivered local dataset contains the original 14 doctors and 84 synthetic patients.
 
-Separate Netlify frontend configuration, a Render backend blueprint, environment examples, and deployment acceptance steps are prepared. Public hosting has not been provisioned. A hosted MongoDB URI and hosting environment configuration are still required before public URLs can be supplied.
+Separate Netlify frontend configuration, a Render backend blueprint, environment examples, and deployment acceptance steps are prepared. The Netlify project `doctor-tracker-portal` and a dedicated MongoDB Atlas project and free cluster have been created. Netlify CLI authorization is confirmed. The free Render Node service form is prepared, awaiting private database and authentication values before deployment. Public acceptance checks have not yet been completed, so the reserved frontend address is not a verified live application.

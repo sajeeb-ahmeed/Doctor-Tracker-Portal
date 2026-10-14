@@ -1,20 +1,26 @@
 # Deployment guide
 
-The frontend and backend are separate applications and repositories. This checkout is prepared for local development first; publishing requires a persistent hosted MongoDB instance and hosting account configuration.
+## Current public deployment
 
-## 1. Database and backend
+| Component | Provider | URL |
+| --- | --- | --- |
+| Frontend / admin portal | Render Free web service | [Launch DoctorTracker](https://doctor-tracker-frontend.onrender.com/login) |
+| Backend / Express API | Render Free web service | [API health endpoint](https://doctor-tracker-api-tg86.onrender.com/api/health) |
+| Database | MongoDB Atlas | `doctor_tracker` on `Cluster0` |
 
-1. Provision a MongoDB database and a dedicated database user for the application.
-2. Deploy `sajeeb-ahmeed/Doctor-Tracker-API` as a standalone Node web service using the backend's `render.yaml` blueprint or equivalent hosting.
-3. Use `npm ci --include=dev && npm run build` as the build command and `npm start` as the start command. Use Node 24. The explicit include keeps TypeScript and type definitions available during compilation when `NODE_ENV=production` is configured.
-4. Set `NODE_ENV=production`, `MONGODB_URI`, a random `SESSION_SECRET` of at least 32 characters, `ADMIN_EMAIL`, `ADMIN_NAME`, and a strong `ADMIN_PASSWORD` for the initial admin account.
-5. Set `FRONTEND_ORIGIN` to the exact HTTPS frontend origin. For several permitted origins, use the format documented in the backend README.
-6. Set `SEED_DEMO=true` only if synthetic example records are wanted in the deployment; disable it afterward.
-7. Verify the API's `/api/health` endpoint and direct authentication behavior.
+The GitHub repos are deployed separately; the frontend forwards `/api/*` to the standalone backend using the server-side `BACKEND_URL`. The live GitHub Actions smoke tests verified connectivity and protection, and the owner confirmed production login. **Real admin credentials must remain private.**
 
-The local automatically launched MongoDB process is a development tool. Production uses the configured hosted MongoDB URI.
+## Deploy to Render (current setup)
 
-## 2. Frontend on Netlify
+1. Import [Doctor-Tracker-API](https://github.com/sajeeb-ahmeed/Doctor-Tracker-API) as a Render **Node** web service. Use Node 24, build `npm ci --include=dev && npm run build`, and start `npm start`.
+2. Configure `NODE_ENV=production`, `MONGODB_URI`, a strong `SESSION_SECRET` (32+ characters), `ADMIN_EMAIL`, `ADMIN_PASSWORD` (12+ characters), exact `FRONTEND_ORIGIN`, and `SEED_DEMO=false`. Provision a dedicated least-privilege Atlas user, then allow Render's outbound network under an appropriate access policy.
+3. Import [Doctor-Tracker-Portal](https://github.com/sajeeb-ahmeed/Doctor-Tracker-Portal) as a separate Render **Node** web service. Build `npm ci --include=dev && npm run build`, then start `./node_modules/.bin/next start --hostname 0.0.0.0 --port $PORT`.
+4. Set frontend `BACKEND_URL=https://doctor-tracker-api-tg86.onrender.com` in Render; update it to your own API origin if you deploy a fork. Do **not** prefix it with `NEXT_PUBLIC_`.
+5. Set backend `FRONTEND_ORIGIN` to the exact public frontend HTTPS origin. Redeploy both services and validate the frontend `/api/health`, login and administrator workflows.
+
+> Render Free instances can spin down between visits, so a first visit may be slower. Do not deploy to a clinical or patient-data production environment without a separate privacy, operations and security review.
+
+## Alternative: Netlify frontend
 
 1. Connect `sajeeb-ahmeed/Doctor-Tracker-Portal` to Netlify.
 2. The included `netlify.toml` selects `npm run build` and the `.next` publish directory. Netlify automatically installs its current Next.js adapter.
@@ -25,7 +31,7 @@ The local automatically launched MongoDB process is a development tool. Producti
 
 `.netlify/` is excluded from Git. Runtime secrets belong in hosting environment settings and must not use a `NEXT_PUBLIC_` prefix.
 
-## 3. Acceptance checks before submission
+## Acceptance checks before submission
 
 - Visit a protected page signed out; verify redirection to login.
 - Sign in using the deployed demo/admin account, then reload a protected page.
@@ -38,4 +44,6 @@ The local automatically launched MongoDB process is a development tool. Producti
 
 ## Submission
 
-Reply All to the original assignment email with both repository links, both live service URLs, and an appropriate demonstration login. Use the actual receipt timestamp for the two-day deadline. Do not put database credentials, session secrets, or hosting tokens in the submission.
+Include the [live frontend](https://doctor-tracker-frontend.onrender.com/login), [live backend health URL](https://doctor-tracker-api-tg86.onrender.com/api/health), and both GitHub repository URLs. Send the demonstration password privately to the reviewer if requested. **Never publish the MongoDB URI, session secret or hosting tokens.** This project uses synthetic records; it is not a regulated clinical system.
+
+For current release evidence and outstanding security hardening tasks, see [Hosting status](HOSTING_STATUS.md).

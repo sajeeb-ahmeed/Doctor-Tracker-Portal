@@ -1,6 +1,29 @@
-# Doctor-Tracker-Portal
+# DoctorTracker
 
-A responsive administrative portal for managing doctors, their patients, and care activity. The application pairs a Next.js frontend with a separate Express REST API and MongoDB, with authenticated access, searchable directories, patient management, and database-backed analytics.
+**A modern healthcare operations dashboard.** Manage doctors, patients and clinical activity in one responsive, data-driven administration portal.
+
+[![Open live portal](https://img.shields.io/badge/LIVE%20DEMO-Open%20DoctorTracker-176B5B?style=for-the-badge&logo=render&logoColor=white)](https://doctor-tracker-frontend.onrender.com/login)
+[![Backend API](https://img.shields.io/badge/REST%20API-Health%20check-26394B?style=for-the-badge&logo=express&logoColor=white)](https://doctor-tracker-api-tg86.onrender.com/api/health)
+
+[![Frontend CI](https://github.com/sajeeb-ahmeed/Doctor-Tracker-Portal/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/sajeeb-ahmeed/Doctor-Tracker-Portal/actions/workflows/ci.yml)
+[![Live smoke tests](https://github.com/sajeeb-ahmeed/Doctor-Tracker-Portal/actions/workflows/check-doctortracker-hosting.yml/badge.svg?branch=main)](https://github.com/sajeeb-ahmeed/Doctor-Tracker-Portal/actions/workflows/check-doctortracker-hosting.yml)
+![Next.js](https://img.shields.io/badge/Next.js-16-111827?logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-116149?logo=mongodb&logoColor=white)
+
+<p align="center">
+  <a href="https://doctor-tracker-frontend.onrender.com/login">
+    <img src="docs/screenshots/dashboard-desktop.png" alt="DoctorTracker premium desktop dashboard" width="900" />
+  </a>
+</p>
+
+<p align="center"><sub>Live portfolio demo · Synthetic demonstration records · Administrator-only access</sub></p>
+
+**[Launch live application](https://doctor-tracker-frontend.onrender.com/login)** · **[View API](https://doctor-tracker-api-tg86.onrender.com/api/health)** · **[Backend source](https://github.com/sajeeb-ahmeed/Doctor-Tracker-API)** · **[Deployment guide](docs/DEPLOYMENT.md)**
+
+> **Reviewer access:** The administrator email is `admin@doctortracker.demo`. The production password is provided privately by the project owner; the password in the local setup section below is **development-only**.
+
+---
 
 ## Features
 
@@ -133,23 +156,17 @@ Browser tests cover anonymous access, invalid credentials, persistent doctor/pat
 
 Formatting: `npm run format` and `npm run format:check`. CI runs type checking and a production frontend build. Detailed outcomes are recorded in `docs/VALIDATION.md` after verification. The [requirements checklist](docs/REQUIREMENTS_CHECKLIST.md) maps the PDF and submission email to source, tests, and documentation evidence, including outstanding delivery items.
 
-## Visual evidence
+## Interface gallery
 
-### Desktop dashboard
+A closer look at the responsive experience. Click any preview for the original image.
 
-![Desktop dashboard](docs/screenshots/dashboard-desktop.png)
+| Doctor directory | Login experience |
+| :---: | :---: |
+| <a href="docs/screenshots/doctors-desktop.png"><img src="docs/screenshots/doctors-desktop.png" width="540" alt="Searchable doctor directory on desktop" /></a> | <a href="docs/screenshots/login-premium-desktop.png"><img src="docs/screenshots/login-premium-desktop.png" width="540" alt="Premium sign-in experience" /></a> |
 
-### Mobile dashboard
-
-![Mobile dashboard](docs/screenshots/dashboard-mobile.png)
-
-### Doctor directory
-
-![Doctor directory](docs/screenshots/doctors-desktop.png)
-
-### Mobile patient directory
-
-![Mobile patient directory](docs/screenshots/patients-mobile.png)
+| Dashboard on mobile | Patient directory on mobile |
+| :---: | :---: |
+| <a href="docs/screenshots/dashboard-mobile.png"><img src="docs/screenshots/dashboard-mobile.png" width="225" alt="Responsive dashboard on a phone" /></a> | <a href="docs/screenshots/patients-mobile.png"><img src="docs/screenshots/patients-mobile.png" width="225" alt="Responsive patient management on a phone" /></a> |
 
 ## Scope and data definitions
 
@@ -169,10 +186,20 @@ Formatting: `npm run format` and `npm run format:check`. CI runs type checking a
 - **Public smoke test:** [GitHub Actions verification](https://github.com/sajeeb-ahmeed/Doctor-Tracker-Portal/actions/runs/38557792623)
 
 The live smoke test verified the login page, database-backed API, same-origin API forwarding,
-anonymous route protection and invalid-login handling. Authenticated production CRUD
-still requires a manual check with the private administrator password. The previously reserved
-Netlify address does not currently host the application; use the verified Render frontend URL.
+anonymous route protection and invalid-login handling. The project owner also confirmed
+successful production login. Automated positive-login and authenticated production CRUD
+were not run, because the real administrator password is not available to CI. The previously
+reserved Netlify address does not currently host the application; use the verified Render URL.
 
 See `docs/DEPLOYMENT.md` for separate backend/frontend deployment and end-to-end acceptance checks. The frontend includes `netlify.toml`; the backend includes a Render blueprint. Production requires hosted MongoDB and hosting environment configuration.
 
 The submission should include both GitHub repositories, both live service URLs, and a demonstration login, using Reply All to the original assignment email. Local URLs do not count as public deployment URLs.
+
+## Project maintenance
+
+- [Contribution guidelines](CONTRIBUTING.md)
+- [Changelog](CHANGELOG.md)
+- [Release and hosting status](docs/HOSTING_STATUS.md)
+- [Bug report](.github/ISSUE_TEMPLATE/bug_report.md) and [feature request](.github/ISSUE_TEMPLATE/feature_request.md)
+
+**Keywords:** healthcare admin dashboard, doctor management, patient management, Next.js, TypeScript, React, Express REST API, MongoDB Atlas, responsive SaaS UI.

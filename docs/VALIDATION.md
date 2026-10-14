@@ -52,7 +52,8 @@ passed the login-page request (200), direct backend health (200), frontend-proxi
 (200), anonymous dashboard redirect (307), anonymous doctor API denial (401), and
 invalid-login denial (401).
 
-**Outstanding:** authenticated production login, CRUD and user-journey verification
-using the privately configured production administrator password. These results should
-not be claimed complete until checked. The reserved Netlify address responded 404 and
-must not be used as the submitted frontend URL.
+**Production login:** The project owner confirmed that sign-in succeeds with the
+privately configured administrator credentials on 14 October 2026. Automated CI
+does not receive the production password, so positive sign-in and authenticated CRUD
+are not asserted as automated production test results. The reserved Netlify address
+responded 404 and must not be used as the submitted frontend URL.

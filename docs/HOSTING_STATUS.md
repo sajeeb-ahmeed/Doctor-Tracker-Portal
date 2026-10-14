@@ -27,9 +27,9 @@ was verified with 14 doctors and 84 patients. `SEED_DEMO=false` after initial se
 - Signed-out `/api/doctors`: 401 unauthorized
 - Invalid `POST /api/auth/login`: 401 unauthorized
 
-Production administrator password is held in the Render environment. It was not exposed
-to the automated verification runner. **Positive production sign-in and authenticated
-CRUD require a final user-performed check** with the private credential.
+Production administrator password is held in the Render environment and is not
+exposed to GitHub Actions. The project owner confirmed a successful production sign-in
+on 14 October 2026. Authenticated CRUD is still unverified by public smoke tests.
 
 ## Netlify note
 

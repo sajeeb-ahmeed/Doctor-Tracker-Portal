@@ -32,7 +32,7 @@ import { Avatar, EmptyState, ErrorState, PageLoading, StatusBadge } from './ui';
 import { DateFilters } from './filters';
 import { PatientForm } from './forms';
 
-const colors = ['#1c3461', '#426caf', '#78a0d9', '#a6b5cc', '#74849d', '#c9d3df'];
+const colors = ['#266cba', '#21a096', '#7686d0', '#d9a461', '#73a4c7', '#9ba8bb'];
 export function DashboardView() {
   const [from, setFrom] = useState(''),
     [to, setTo] = useState(''),
@@ -231,12 +231,12 @@ function DashboardContent({ data, filtered }: { data: Dashboard; filtered: boole
                   >
                     <defs>
                       <linearGradient id="patientGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#1c3461" stopOpacity={0.22} />
-                        <stop offset="95%" stopColor="#1c3461" stopOpacity={0} />
+                        <stop offset="0%" stopColor="#266cba" stopOpacity={0.22} />
+                        <stop offset="95%" stopColor="#266cba" stopOpacity={0} />
                       </linearGradient>
                       <linearGradient id="doctorGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#5b83c2" stopOpacity={0.12} />
-                        <stop offset="95%" stopColor="#5b83c2" stopOpacity={0} />
+                        <stop offset="0%" stopColor="#21a096" stopOpacity={0.12} />
+                        <stop offset="95%" stopColor="#21a096" stopOpacity={0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 5" vertical={false} stroke="#e4eaf3" />
@@ -256,10 +256,10 @@ function DashboardContent({ data, filtered }: { data: Dashboard; filtered: boole
                     />
                     <Tooltip
                       contentStyle={{
-                        border: '1px solid #dce5f2',
+                        border: '1px solid #dce7f3',
                         borderRadius: 12,
                         fontSize: 12,
-                        boxShadow: '0 10px 30px #1c346116',
+                        boxShadow: '0 10px 30px #172d501a',
                       }}
                     />
                     <Area
@@ -267,7 +267,7 @@ function DashboardContent({ data, filtered }: { data: Dashboard; filtered: boole
                       type="monotone"
                       dataKey="patients"
                       name="Patients"
-                      stroke="#1c3461"
+                      stroke="#266cba"
                       strokeWidth={2.5}
                       fill="url(#patientGradient)"
                       activeDot={{ r: 5, strokeWidth: 3, stroke: '#fff' }}
@@ -277,7 +277,7 @@ function DashboardContent({ data, filtered }: { data: Dashboard; filtered: boole
                       type="monotone"
                       dataKey="doctors"
                       name="Doctors"
-                      stroke="#5b83c2"
+                      stroke="#21a096"
                       strokeWidth={2}
                       fill="url(#doctorGradient)"
                       activeDot={{ r: 4, strokeWidth: 3, stroke: '#fff' }}
@@ -440,7 +440,7 @@ function DashboardContent({ data, filtered }: { data: Dashboard; filtered: boole
                       ))}
                     </Pie>
                     <Tooltip
-                      contentStyle={{ border: '1px solid #dce5f2', borderRadius: 12, fontSize: 12 }}
+                      contentStyle={{ border: '1px solid #dce7f3', borderRadius: 12, fontSize: 12 }}
                     />
                   </PieChart>
                 </ResponsiveContainer>

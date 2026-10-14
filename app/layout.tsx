@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Providers } from '@/components/providers';
 import './globals.css';
+import './navy-refinements.css';
 export const metadata: Metadata = {
   title: { default: 'DoctorTracker — Care, connected.', template: '%s | DoctorTracker' },
   description:

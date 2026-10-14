@@ -1,0 +1,30 @@
+name: Check DoctorTracker public hosting
+on:
+  push:
+    paths:
+      - .github/workflows/check-doctortracker-hosting.yml
+  workflow_dispatch:
+jobs:
+  hosting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify Render API
+        run: |
+          curl -sS -L --max-time 35 -D /tmp/apiheaders -o /tmp/apiresponse https://doctor-tracker-api-tg86.onrender.com/api/health || true
+          echo "Render health HTTP: $(head -1 /tmp/apiheaders 2>/dev/null || true)"
+          cat /tmp/apiresponse 2>/dev/null || true
+      - name: Verify Netlify login and API forwarding
+        run: |
+          for n in 1 2 3; do
+            code=$(curl -sS -L --max-time 25 -o /tmp/netlifyresponse -w '%{http_code}' https://doctor-tracker-portal.netlify.app/login || true)
+            echo "Netlify login HTTP attempt $n: $code"
+            if [ "$code" = 200 ]; then break; fi
+            sleep 12
+          done
+          echo "Login response first bytes:"
+          head -c 300 /tmp/netlifyresponse 2>/dev/null || true
+          echo
+          api=$(curl -sS -L --max-time 35 -o /tmp/proxyresponse -w '%{http_code}' https://doctor-tracker-portal.netlify.app/api/health || true)
+          echo "Netlify API proxy HTTP: $api"
+          head -c 250 /tmp/proxyresponse 2>/dev/null || true
+          echo

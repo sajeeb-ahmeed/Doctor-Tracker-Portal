@@ -1,0 +1,49 @@
+name: Live DoctorTracker deployment smoke test
+on:
+  push:
+    branches:
+      - ops/live-hosting-smoke-20261014
+    paths:
+      - .github/workflows/live-hosting-smoke.yml
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Test public frontend, backend, auth protection and API rewrite
+        run: |
+          node --input-type=module <<'EOF'
+          import assert from 'node:assert/strict';
+          const frontend = 'https://doctor-tracker-frontend.onrender.com';
+          const backend = 'https://doctor-tracker-api-tg86.onrender.com';
+          async function request(url, init = {}) {
+            const res = await fetch(url, { signal: AbortSignal.timeout(105000), ...init });
+            console.log(new URL(url).pathname + ': HTTP ' + res.status);
+            return res;
+          }
+          const api = await request(backend + '/api/health');
+          assert.equal(api.status, 200, 'Render API must respond 200');
+          assert.equal((await api.json()).data.status, 'ok', 'Backend must report healthy database');
+          const login = await request(frontend + '/login');
+          assert.equal(login.status, 200, 'Frontend login page must load');
+          const html = await login.text();
+          assert.ok(html.includes('Welcome back'), 'Premium DoctorTracker login must render');
+          const proxied = await request(frontend + '/api/health');
+          assert.equal(proxied.status, 200, 'Frontend Next.js rewrite must reach the Express API');
+          assert.equal((await proxied.json()).data.status, 'ok');
+          const dashboard = await request(frontend + '/dashboard', {redirect: 'manual'});
+          assert.ok([301,302,303,307,308].includes(dashboard.status), 'Protected dashboard must redirect');
+          assert.ok((dashboard.headers.get('location') || '').includes('/login'), 'Dashboard must redirect to login');
+          const doctors = await request(frontend + '/api/doctors');
+          assert.equal(doctors.status, 401, 'Protected patient and doctor endpoints must reject anonymous users');
+          const badLogin = await request(frontend + '/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'DoctorTracker' },
+            body: JSON.stringify({email: 'not-a-user@example.invalid',password: 'intentionally-incorrect-password'})
+          });
+          assert.equal(badLogin.status, 401, 'Invalid credentials must be rejected');
+          console.log('PASS: live frontend, database-backed API, rewrite, protected routes and invalid-login checks');
+          EOF

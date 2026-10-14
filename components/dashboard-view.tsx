@@ -32,7 +32,7 @@ import { Avatar, EmptyState, ErrorState, PageLoading, StatusBadge } from './ui';
 import { DateFilters } from './filters';
 import { PatientForm } from './forms';
 
-const colors = ['#168b7b', '#6979d7', '#e0ab63', '#8ecfc3', '#abb6ed', '#c9d3d6'];
+const colors = ['#266cba', '#21a096', '#7686d0', '#d9a461', '#73a4c7', '#9ba8bb'];
 export function DashboardView() {
   const [from, setFrom] = useState(''),
     [to, setTo] = useState(''),
@@ -231,20 +231,20 @@ function DashboardContent({ data, filtered }: { data: Dashboard; filtered: boole
                   >
                     <defs>
                       <linearGradient id="patientGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#168b7b" stopOpacity={0.22} />
-                        <stop offset="95%" stopColor="#168b7b" stopOpacity={0} />
+                        <stop offset="0%" stopColor="#266cba" stopOpacity={0.22} />
+                        <stop offset="95%" stopColor="#266cba" stopOpacity={0} />
                       </linearGradient>
                       <linearGradient id="doctorGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#7886d7" stopOpacity={0.12} />
-                        <stop offset="95%" stopColor="#7886d7" stopOpacity={0} />
+                        <stop offset="0%" stopColor="#21a096" stopOpacity={0.12} />
+                        <stop offset="95%" stopColor="#21a096" stopOpacity={0} />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 5" vertical={false} stroke="#e7edec" />
+                    <CartesianGrid strokeDasharray="3 5" vertical={false} stroke="#e4eaf3" />
                     <XAxis
                       dataKey="label"
                       axisLine={false}
                       tickLine={false}
-                      tick={{ fill: '#85908e', fontSize: 11 }}
+                      tick={{ fill: '#64758c', fontSize: 11 }}
                       minTickGap={35}
                       dy={8}
                     />
@@ -252,14 +252,14 @@ function DashboardContent({ data, filtered }: { data: Dashboard; filtered: boole
                       allowDecimals={false}
                       axisLine={false}
                       tickLine={false}
-                      tick={{ fill: '#85908e', fontSize: 11 }}
+                      tick={{ fill: '#64758c', fontSize: 11 }}
                     />
                     <Tooltip
                       contentStyle={{
-                        border: '1px solid #e3ece9',
+                        border: '1px solid #dce7f3',
                         borderRadius: 12,
                         fontSize: 12,
-                        boxShadow: '0 8px 30px #16382a12',
+                        boxShadow: '0 10px 30px #172d501a',
                       }}
                     />
                     <Area
@@ -267,7 +267,7 @@ function DashboardContent({ data, filtered }: { data: Dashboard; filtered: boole
                       type="monotone"
                       dataKey="patients"
                       name="Patients"
-                      stroke="#168b7b"
+                      stroke="#266cba"
                       strokeWidth={2.5}
                       fill="url(#patientGradient)"
                       activeDot={{ r: 5, strokeWidth: 3, stroke: '#fff' }}
@@ -277,7 +277,7 @@ function DashboardContent({ data, filtered }: { data: Dashboard; filtered: boole
                       type="monotone"
                       dataKey="doctors"
                       name="Doctors"
-                      stroke="#7886d7"
+                      stroke="#21a096"
                       strokeWidth={2}
                       fill="url(#doctorGradient)"
                       activeDot={{ r: 4, strokeWidth: 3, stroke: '#fff' }}
@@ -440,7 +440,7 @@ function DashboardContent({ data, filtered }: { data: Dashboard; filtered: boole
                       ))}
                     </Pie>
                     <Tooltip
-                      contentStyle={{ border: '1px solid #e3ece9', borderRadius: 12, fontSize: 12 }}
+                      contentStyle={{ border: '1px solid #dce7f3', borderRadius: 12, fontSize: 12 }}
                     />
                   </PieChart>
                 </ResponsiveContainer>

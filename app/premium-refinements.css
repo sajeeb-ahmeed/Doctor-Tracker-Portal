@@ -1279,3 +1279,288 @@ body {
     transform: none;
   }
 }
+
+/*
+ * Final review polish: keep the desktop rail continuous in full-page captures.
+ * The existing fixed sidebar stays interactive; the parent paints the portion
+ * below the first viewport instead of leaving an apparent white gap.
+ */
+@media (min-width: 801px) {
+  .portal {
+    --portal-rail-width: 240px;
+    background: linear-gradient(
+      to right,
+      #0d1c36 var(--portal-rail-width),
+      var(--background) var(--portal-rail-width)
+    );
+  }
+
+  .sidebar {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #355882 transparent;
+  }
+
+  .sidebar-care {
+    display: block;
+    flex: 0 0 auto;
+    position: relative;
+    margin: auto 0 24px;
+    padding: 19px 15px 18px;
+    border: 1px solid #a7ccff23;
+    border-radius: 14px;
+    background: linear-gradient(155deg, #31527f77, #1f3b6266);
+  }
+
+  .sidebar-care .care-line {
+    display: none;
+  }
+
+  .care-orbit {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 15px;
+    border: 1px solid #a8d1ff4d;
+    color: #d5eaff;
+    background: #86b9f11c;
+    box-shadow: 0 0 0 5px #86b9f10a;
+  }
+
+  .care-orbit svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .sidebar-care h3 {
+    color: #f0f7ff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: -0.2px;
+  }
+
+  .sidebar-care p {
+    color: #b5c8e1;
+    margin-top: 9px;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .sidebar-bottom {
+    margin-top: 0;
+    padding-top: 16px;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 1200px) {
+  .portal {
+    --portal-rail-width: 215px;
+  }
+
+  .sidebar-care {
+    padding: 16px 12px;
+    margin-bottom: 18px;
+  }
+
+  .sidebar-care h3 {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 801px) and (max-height: 690px) {
+  .sidebar-care {
+    display: none;
+  }
+
+  .sidebar-bottom {
+    margin-top: auto;
+  }
+}
+
+/* More deliberate dashboard rhythm and less dead space inside chart panels. */
+.main-content {
+  padding-top: 31px;
+}
+
+.care-hero {
+  min-height: 198px;
+  margin-bottom: 19px;
+}
+
+.hero-art {
+  min-height: 198px;
+}
+
+.hero-copy {
+  padding: 27px 32px;
+}
+
+.metric-grid {
+  gap: 15px;
+  margin-bottom: 19px;
+}
+
+.metric-card {
+  min-height: 145px;
+  padding: 17px 19px;
+}
+
+.metric-top {
+  margin-bottom: 11px;
+}
+
+.metric-value {
+  font-size: 32px;
+}
+
+.metric-caption {
+  font-size: 12px;
+}
+
+.dashboard-grid {
+  gap: 17px;
+}
+
+.registrations-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.registrations-panel .chart-area {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 260px;
+}
+
+.registrations-panel .chart-footnote {
+  margin-top: auto;
+}
+
+.chart-legend {
+  align-self: center;
+  padding-top: 0;
+}
+
+.chart-footnote {
+  flex-wrap: wrap;
+  row-gap: 5px;
+}
+
+.doctor-distribution-list {
+  gap: 15px;
+  padding-bottom: 18px;
+}
+
+.doctor-distribution-row .avatar {
+  width: 34px;
+  height: 34px;
+  font-size: 10px;
+}
+
+.distribution-main strong {
+  font-size: 13px;
+}
+
+.distribution-main small {
+  font-size: 12px;
+}
+
+.recent-table .cell-secondary,
+.recent-table .condition-text,
+.recent-table .table-date {
+  font-size: 12px;
+}
+
+.conditions-legend {
+  gap: 10px;
+}
+
+.conditions-legend > div {
+  line-height: 1.55;
+}
+
+@media (max-width: 1020px) {
+  .registrations-panel .chart-area {
+    height: 270px;
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 800px) {
+  .portal {
+    background: var(--background);
+  }
+
+  .registrations-panel .chart-area {
+    height: 260px;
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-content {
+    padding-top: 24px;
+  }
+
+  .care-hero {
+    min-height: 207px;
+    margin-bottom: 18px;
+  }
+
+  .hero-art {
+    min-height: 207px;
+  }
+
+  .hero-copy {
+    padding: 24px 21px;
+  }
+
+  .metric-grid {
+    gap: 11px;
+  }
+
+  .metric-card {
+    min-height: 145px;
+    padding: 15px;
+  }
+
+  .metric-value {
+    font-size: 29px;
+  }
+
+  .metric-caption {
+    font-size: 11px;
+  }
+
+  .registrations-panel .chart-area {
+    height: 245px;
+    min-height: 235px;
+  }
+
+  .chart-legend {
+    gap: 9px;
+    font-size: 11px;
+  }
+
+  .chart-footnote {
+    font-size: 11px;
+  }
+
+  .doctor-distribution-list {
+    gap: 18px;
+  }
+
+  .distribution-main strong {
+    font-size: 12px;
+  }
+
+  .distribution-main small {
+    font-size: 11px;
+  }
+
+  .recent-table .cell-secondary,
+  .recent-table .condition-text,
+  .recent-table .table-date {
+    font-size: 11px;
+  }
+}

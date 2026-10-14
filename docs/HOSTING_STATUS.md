@@ -1,35 +1,46 @@
-# DoctorTracker hosting status (14 October 2026)
+# DoctorTracker verified live deployment (14 October 2026)
 
-Frontend repository: https://github.com/sajeeb-ahmeed/Doctor-Tracker-Portal
+## Working public URLs
 
-Backend repository: https://github.com/sajeeb-ahmeed/Doctor-Tracker-API
+- **Premium Next.js frontend:** https://doctor-tracker-frontend.onrender.com/login
+- **Express API health:** https://doctor-tracker-api-tg86.onrender.com/api/health
+- **Frontend GitHub repository:** https://github.com/sajeeb-ahmeed/Doctor-Tracker-Portal
+- **Backend GitHub repository:** https://github.com/sajeeb-ahmeed/Doctor-Tracker-API
 
-## Verified infrastructure
+Both application services run on the Render Free plan. The frontend's server-side
+`BACKEND_URL` is configured for the separate Render Express API. Render's
+`FRONTEND_ORIGIN` accepts the verified Render frontend and the reserved Netlify origin.
 
-- Express REST API is deployed on Render: https://doctor-tracker-api-tg86.onrender.com
-- Public health endpoint: https://doctor-tracker-api-tg86.onrender.com/api/health
-- Render deployment reported `live` after successful TypeScript compilation, MongoDB connection, and application startup.
-- MongoDB Atlas project `Doctor-Tracker-Portal`, cluster `Cluster0`, database `doctor_tracker`.
-- Dedicated MongoDB user `doctortracker_service` has database-specific `readWrite` permission.
-- The seeded database contains 14 synthetic doctors and 84 synthetic patients.
-- Netlify project `doctor-tracker-portal` exists, and its `BACKEND_URL` environment variable points to the Render API with build and runtime scopes.
+MongoDB Atlas cluster `Cluster0` within project `Doctor-Tracker-Portal` hosts
+`doctor_tracker`. The dedicated `doctortracker_service` user has scoped
+`readWrite` permission on that database only. The synthetic demonstration database
+was verified with 14 doctors and 84 patients. `SEED_DEMO=false` after initial seeding.
 
-## Frontend deployment
+## Public smoke tests
 
-Target URL: https://doctor-tracker-portal.netlify.app
+[Passing GitHub Actions run](https://github.com/sajeeb-ahmeed/Doctor-Tracker-Portal/actions/runs/38557792623):
 
-The frontend must be deployed from this repository's `main` branch **after**
-`BACKEND_URL` is set, because Next.js resolves the API rewrite when building.
-A configured project URL is not itself proof that deployment or login succeeded.
+- Render backend `/api/health`: 200, connected database
+- Render frontend `/login`: 200, premium sign-in rendered
+- Frontend `/api/health`: 200, successful backend forwarding
+- Signed-out `/dashboard`: 307 redirect to login
+- Signed-out `/api/doctors`: 401 unauthorized
+- Invalid `POST /api/auth/login`: 401 unauthorized
 
-## Final acceptance checklist
+Production administrator password is held in the Render environment. It was not exposed
+to the automated verification runner. **Positive production sign-in and authenticated
+CRUD require a final user-performed check** with the private credential.
 
-- Verify Netlify deployment is published and serves the Next.js login route.
-- Verify `/api/health` on the frontend forwards successfully to Render.
-- Verify signed-out users cannot open `/dashboard`.
-- Verify login, dashboard data, doctor/patient workflows, search, pagination and logout.
-- Confirm responsive mobile layout and that the public demo contains **synthetic** records only.
-- Restrict Atlas network access when stable egress is available, and remove unused DB users.
+## Netlify note
 
-Secrets (session secret, MongoDB URI, and admin password) belong in hosting
-environment settings only. Never commit them to the repositories.
+The Netlify project `doctor-tracker-portal` is created and has `BACKEND_URL` configured,
+but the public `doctor-tracker-portal.netlify.app` site returned 404 during external
+testing. Do not submit the Netlify URL as a working demo. Use the verified Render
+frontend URL above.
+
+## Operations follow-up
+
+- Remove any unused Atlas database users and restrict the temporarily broad
+  Atlas IP access entry when static Render egress or private networking is available.
+- Keep database URI, session secret, and admin password only in hosting secrets.
+- Free-tier services may have cold-start delays after idle periods.

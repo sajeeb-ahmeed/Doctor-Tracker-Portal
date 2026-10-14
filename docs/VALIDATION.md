@@ -35,4 +35,24 @@ Desktop and mobile screenshots are included in `docs/screenshots/` and were visu
 
 Automated tests created uniquely named synthetic records. Temporary patients were removed, and unassigned test doctors were removed using their exact test name/email patterns. The delivered local dataset contains the original 14 doctors and 84 synthetic patients.
 
-Separate Netlify frontend configuration, a Render backend blueprint, environment examples, and deployment acceptance steps are prepared. The Netlify project `doctor-tracker-portal` and a dedicated MongoDB Atlas project and free cluster have been created. Netlify CLI authorization is confirmed. The free Render Node service form is prepared, awaiting private database and authentication values before deployment. Public acceptance checks have not yet been completed, so the reserved frontend address is not a verified live application.
+## Public deployment verification (14 October 2026)
+
+The frontend and backend are deployed as separate Render Free web services:
+
+- Frontend: <https://doctor-tracker-frontend.onrender.com/login>
+- Backend health: <https://doctor-tracker-api-tg86.onrender.com/api/health>
+- Database: MongoDB Atlas project `Doctor-Tracker-Portal`, database `doctor_tracker`.
+
+The backend reports healthy MongoDB connectivity, and the hosted database contained
+14 synthetic doctors and 84 synthetic patients. Production demo seeding was disabled
+after initial creation so existing records are not re-created.
+
+[Public smoke tests](https://github.com/sajeeb-ahmeed/Doctor-Tracker-Portal/actions/runs/38557792623)
+passed the login-page request (200), direct backend health (200), frontend-proxied API health
+(200), anonymous dashboard redirect (307), anonymous doctor API denial (401), and
+invalid-login denial (401).
+
+**Outstanding:** authenticated production login, CRUD and user-journey verification
+using the privately configured production administrator password. These results should
+not be claimed complete until checked. The reserved Netlify address responded 404 and
+must not be used as the submitted frontend URL.

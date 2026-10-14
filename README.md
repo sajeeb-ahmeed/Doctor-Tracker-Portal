@@ -161,6 +161,18 @@ Formatting: `npm run format` and `npm run format:check`. CI runs type checking a
 
 ## Deployment and submission
 
+### Publicly hosted DoctorTracker demo (14 October 2026)
+
+- **Frontend:** <https://doctor-tracker-frontend.onrender.com/login> (Render Free)
+- **Backend API:** <https://doctor-tracker-api-tg86.onrender.com/api/health> (Render Free)
+- **Database:** MongoDB Atlas, database `doctor_tracker`, synthetic demonstration records
+- **Public smoke test:** [GitHub Actions verification](https://github.com/sajeeb-ahmeed/Doctor-Tracker-Portal/actions/runs/38557792623)
+
+The live smoke test verified the login page, database-backed API, same-origin API forwarding,
+anonymous route protection and invalid-login handling. Authenticated production CRUD
+still requires a manual check with the private administrator password. The previously reserved
+Netlify address does not currently host the application; use the verified Render frontend URL.
+
 See `docs/DEPLOYMENT.md` for separate backend/frontend deployment and end-to-end acceptance checks. The frontend includes `netlify.toml`; the backend includes a Render blueprint. Production requires hosted MongoDB and hosting environment configuration.
 
 The submission should include both GitHub repositories, both live service URLs, and a demonstration login, using Reply All to the original assignment email. Local URLs do not count as public deployment URLs.

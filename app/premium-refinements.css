@@ -22,7 +22,7 @@
 body {
   background: var(--background);
   color: var(--ink);
-  font-family: Inter, "Segoe UI Variable", "Segoe UI", Arial, sans-serif;
+  font-family: Inter, 'Segoe UI Variable', 'Segoe UI', Arial, sans-serif;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -330,7 +330,7 @@ body {
 }
 
 .care-hero::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 360px;
   height: 360px;
@@ -443,7 +443,7 @@ body {
 }
 
 .metric-card::before {
-  content: "";
+  content: '';
   position: absolute;
   height: 3px;
   inset: 0 0 auto;

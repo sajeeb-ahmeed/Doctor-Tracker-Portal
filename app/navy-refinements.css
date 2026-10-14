@@ -826,138 +826,219 @@ body {
   }
 }
 
-/* Submission-day finish: quiet, legible, navy-first clinical workspace. */
-body {
-  color: #1b2940;
-  font-family: 'Inter', 'Segoe UI Variable', 'Manrope', 'Aptos', 'Segoe UI', sans-serif;
-  font-size: 14px;
-  line-height: 1.55;
+/* Submission-day finish: improved readability and consistent navy components. */
+.page-heading p {
+  font-size: 13px;
 }
-.button, .nav-link, .metric-card, .table-action {
-  transition: background-color .16s ease, border-color .16s ease,
-    color .16s ease, box-shadow .16s ease, transform .16s ease;
+
+.metric-card {
+  min-height: 140px;
+  padding: 19px 21px 18px;
 }
-.button:focus-visible, a:focus-visible, .icon-button:focus-visible {
-  outline: 3px solid #5a88ca;
-  outline-offset: 3px;
+
+.metric-card:hover {
+  transform: translateY(-2px);
 }
-.sidebar { box-shadow: 4px 0 18px #1b335006; }
-.nav-link { min-height: 44px; }
-.nav-link.active { border: 1px solid #dce6f6; }
-.topbar { backdrop-filter: saturate(1.2) blur(10px); }
-.main-content { max-width: 1480px; }
-.page-heading h1 { font-weight: 720; letter-spacing: -1.25px; }
-.page-heading p { font-size: 13px; }
-.care-hero {
-  background:
-    radial-gradient(circle at 78% 42%, #ffffff8c 0, transparent 34%),
-    linear-gradient(108deg, #eff4fb 0%, #e6edf8 100%);
+
+.metric-label,
+.metric-caption {
+  font-size: 12px;
 }
-.hero-copy h2 { font-weight: 720; letter-spacing: -0.8px; }
-.hero-copy p { font-size: 12px; }
-.metric-card { padding: 19px 21px 18px; min-height: 140px; }
-.metric-card:hover { transform: translateY(-2px); }
-.metric-label, .metric-caption { font-size: 12px; }
+
 .metric-value {
   color: #182d51;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -1px;
 }
-.panel-header h2 { font-size: 16px; font-weight: 720; }
-.panel-header p, .directory-panel .panel-header p { font-size: 12px; }
-.chart-footnote { gap: 8px; }
-.chart-footnote > span { text-align: right; }
+
+.panel-header h2 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
 .distribution-main strong {
   color: #243650;
   font-size: 12px;
-  min-width: 0;
 }
-.distribution-main b { flex-shrink: 0; }
-.distribution-main small { font-size: 11px; }
-.distribution-track { height: 6px; }
-.doctor-distribution-row { border-radius: 8px; }
-.recent-table .person-name, .person-name { font-size: 13px; }
-.recent-table .cell-secondary, .recent-table .condition-text,
-.recent-table .table-date, .cell-secondary, .cell-phone,
-.table-date, .condition-text { font-size: 12px; }
-.recent-table .status-badge, .status-badge, .specialty-tag { font-size: 11px; }
-.conditions-legend > div { font-size: 12px; line-height: 1.4; }
-.conditions-legend > div > span { overflow-wrap: anywhere; }
-.conditions-legend > div > strong { font-variant-numeric: tabular-nums; }
-.data-table th { background: #f7f9fc; font-size: 11px; font-weight: 650; }
-.data-table td { font-size: 12px; border-color: #edf1f6; }
-.directory-panel .panel-header { border-color: #e5ebf3; }
-.filter-toolbar { background: #fafcff; border-color: #e4eaf3; }
-.search-field, .select-filter select, .date-filter-group {
+
+.distribution-main b {
+  flex-shrink: 0;
+}
+
+.distribution-main small {
+  font-size: 11px;
+}
+
+.distribution-track {
+  height: 6px;
+}
+
+.recent-table .person-name,
+.person-name {
+  font-size: 13px;
+}
+
+.recent-table .cell-secondary,
+.recent-table .condition-text,
+.recent-table .table-date,
+.cell-secondary,
+.cell-phone,
+.table-date,
+.condition-text {
+  font-size: 12px;
+}
+
+.conditions-legend > div {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.conditions-legend > div > span {
+  overflow-wrap: anywhere;
+}
+
+.data-table th {
+  background: #f7f9fc;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.data-table td {
+  font-size: 12px;
+  border-color: #edf1f6;
+}
+
+.filter-toolbar {
+  background: #fafcff;
+  border-color: #e4eaf3;
+}
+
+.search-field,
+.select-filter select,
+.date-filter-group {
   color: #344f73;
   border-color: #d5deeb;
   background-color: #fff;
   min-height: 42px;
 }
-.search-field:focus-within, .date-filter-group:focus-within {
+
+.search-field:focus-within,
+.date-filter-group:focus-within {
   border-color: #517ebd;
   box-shadow: 0 0 0 3px #517ebd22;
 }
+
 .search-field input {
   color: #243a5b;
   font-size: 13px;
 }
-.search-field input::placeholder { color: #71839a; }
+
+.search-field input::placeholder {
+  color: #71839a;
+}
+
 .select-filter select {
   font-size: 12px;
   color: #334a68;
 }
-.filter-indicator, .filter-date-caption, .filter-date-caption > span,
-.date-filter-group > span, .clear-filters {
+
+.filter-indicator,
+.filter-date-caption,
+.filter-date-caption > span,
+.date-filter-group > span,
+.clear-filters {
   color: #5b6e88;
   font-size: 11px;
 }
-.date-filter-group input { color: #344d71; font-size: 12px; }
-.date-filter-group input:focus-visible { outline-color: #517ebd; }
-.table-scroll { scrollbar-color: #c9d6e8 transparent; }
+
+.date-filter-group input {
+  color: #344d71;
+  font-size: 12px;
+}
+
+.date-filter-group input:focus-visible {
+  outline-color: #517ebd;
+}
+
+.table-scroll {
+  scrollbar-color: #c9d6e8 transparent;
+}
+
 .table-action {
   color: #305788;
   border-color: #dfe8f3;
   background: #f3f7fc;
 }
-.table-action:hover { background: #e8f1fc; color: #1c3461; }
-.hospital-cell, .patient-count, .profile-caption { color: #4d6481; }
-.hospital-cell svg, .patient-count svg { color: #56759e; }
-.login-page {
-  background:
-    radial-gradient(circle at 50% 4%, #edf2fa 0, transparent 50%),
-    #f7f9fc;
+
+.table-action:hover {
+  background: #e8f1fc;
+  color: #1c3461;
 }
+
+.hospital-cell,
+.patient-count,
+.profile-caption {
+  color: #4d6481;
+}
+
+.hospital-cell svg,
+.patient-count svg {
+  color: #56759e;
+}
+
 .login-form-side {
-  box-shadow: 0 18px 56px #172e5010;
   border-color: #dce4f0;
+  box-shadow: 0 18px 56px #172e5010;
 }
-.login-form-wrap h2 { font-weight: 720; }
-.login-form .field > label { font-size: 13px; font-weight: 650; }
-.login-form .field input { font-size: 14px; }
-.login-intro { font-size: 13px; }
-.login-secure, .login-copyright { font-size: 11px; }
-@media (max-width: 800px) {
-  .main-content { padding-left: 22px; padding-right: 22px; }
+
+.login-form-wrap h2 {
+  font-weight: 700;
 }
+
+.login-form .field > label {
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.login-form .field input {
+  font-size: 14px;
+}
+
 @media (max-width: 600px) {
-  .page-heading h1 { font-size: clamp(26px, 7vw, 32px); }
-  .metric-card { min-height: 134px; padding: 15px; }
-  .metric-label, .metric-caption { font-size: 12px; }
-  .panel-eyebrow { font-size: 10px; }
-  .panel-header h2 { font-size: 15px; }
-  .hero-copy p, .chart-legend, .chart-footnote,
-  .conditions-legend > div { font-size: 12px; }
-  .recent-table .person-name, .person-name { font-size: 12px; }
-  .recent-table .cell-secondary, .recent-table .condition-text,
-  .recent-table .table-date { font-size: 11px; }
-  .search-field input, .select-filter select,
-  .date-filter-group input { font-size: 12px; }
-  .filter-date-caption, .filter-date-caption > span,
-  .filter-indicator { font-size: 11px; }
-  .login-page { background: #fff; }
-  .login-form-side { box-shadow: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .button, .nav-link, .metric-card, .table-action { transition: none; }
+  .metric-card {
+    min-height: 134px;
+    padding: 15px;
+  }
+
+  .metric-label,
+  .metric-caption {
+    font-size: 12px;
+  }
+
+  .panel-eyebrow {
+    font-size: 10px;
+  }
+
+  .panel-header h2 {
+    font-size: 15px;
+  }
+
+  .recent-table .person-name {
+    font-size: 12px;
+  }
+
+  .recent-table .cell-secondary,
+  .recent-table .condition-text,
+  .recent-table .table-date {
+    font-size: 11px;
+  }
+
+  .search-field input,
+  .select-filter select,
+  .date-filter-group input {
+    font-size: 12px;
+  }
+
+  .login-form-side {
+    box-shadow: none;
+  }
 }

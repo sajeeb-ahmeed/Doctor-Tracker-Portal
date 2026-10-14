@@ -1,0 +1,40 @@
+name: Final polished UI capture
+on:
+  push:
+    branches:
+      - ui/submission-ready-refinement-20261014
+    paths:
+      - .github/workflows/final-visual-capture.yml
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run setup:local
+      - name: Start local frontend and backend
+        run: |
+          nohup npm run dev:all > /tmp/doctortracker.log 2>&1 &
+          for i in $(seq 1 150); do
+            if curl -fsS http://127.0.0.1:3000/login > /dev/null; then exit 0; fi
+            sleep 2
+          done
+          tail -100 /tmp/doctortracker.log
+          exit 1
+      - name: Capture final screenshots
+        run: node tests/capture-screenshots.mjs
+      - name: Run browser tests
+        run: npm run test:e2e
+      - name: Upload visual QA artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: doctortracker-final-visual-capture
+          path: docs/screenshots/*.png
+          if-no-files-found: warn

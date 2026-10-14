@@ -6,7 +6,7 @@ on:
     paths:
       - .github/workflows/premium-visual-qa.yml
 permissions:
-  contents: read
+  contents: write
 jobs:
   visual:
     runs-on: ubuntu-latest
@@ -41,6 +41,15 @@ jobs:
           await page.screenshot({ path: 'docs/screenshots/login-premium-desktop.png', fullPage: true, animations: 'disabled' });
           await browser.close();
           EOF
+      - name: Publish latest screenshots to the review branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/screenshots/dashboard-desktop.png docs/screenshots/dashboard-mobile.png docs/screenshots/doctors-desktop.png docs/screenshots/patients-mobile.png docs/screenshots/login-premium-desktop.png
+          if ! git diff --cached --quiet; then
+            git commit -m "docs: refresh premium UI visual evidence"
+            git push
+          fi
       - name: Upload visual QA screenshots
         if: always()
         uses: actions/upload-artifact@v4

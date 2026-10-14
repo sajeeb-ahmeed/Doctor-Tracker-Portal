@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Report a reproducible issue with the portal
-title: "bug: "
+title: 'bug: '
 ---
 
 ## What happened?

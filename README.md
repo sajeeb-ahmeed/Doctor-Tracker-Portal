@@ -160,12 +160,12 @@ Formatting: `npm run format` and `npm run format:check`. CI runs type checking a
 
 A closer look at the responsive experience. Click any preview for the original image.
 
-| Doctor directory | Login experience |
-| :---: | :---: |
+|                                                                        Doctor directory                                                                        |                                                                        Login experience                                                                        |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | <a href="docs/screenshots/doctors-desktop.png"><img src="docs/screenshots/doctors-desktop.png" width="540" alt="Searchable doctor directory on desktop" /></a> | <a href="docs/screenshots/login-premium-desktop.png"><img src="docs/screenshots/login-premium-desktop.png" width="540" alt="Premium sign-in experience" /></a> |
 
-| Dashboard on mobile | Patient directory on mobile |
-| :---: | :---: |
+|                                                                    Dashboard on mobile                                                                    |                                                                   Patient directory on mobile                                                                    |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | <a href="docs/screenshots/dashboard-mobile.png"><img src="docs/screenshots/dashboard-mobile.png" width="225" alt="Responsive dashboard on a phone" /></a> | <a href="docs/screenshots/patients-mobile.png"><img src="docs/screenshots/patients-mobile.png" width="225" alt="Responsive patient management on a phone" /></a> |
 
 ## Scope and data definitions

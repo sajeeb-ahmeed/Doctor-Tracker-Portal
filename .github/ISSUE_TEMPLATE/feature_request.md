@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an improvement to the portal
-title: "feat: "
+title: 'feat: '
 ---
 
 ## Problem to solve

@@ -2,11 +2,11 @@
 
 ## Current public deployment
 
-| Component | Provider | URL |
-| --- | --- | --- |
-| Frontend / admin portal | Render Free web service | [Launch DoctorTracker](https://doctor-tracker-frontend.onrender.com/login) |
-| Backend / Express API | Render Free web service | [API health endpoint](https://doctor-tracker-api-tg86.onrender.com/api/health) |
-| Database | MongoDB Atlas | `doctor_tracker` on `Cluster0` |
+| Component               | Provider                | URL                                                                            |
+| ----------------------- | ----------------------- | ------------------------------------------------------------------------------ |
+| Frontend / admin portal | Render Free web service | [Launch DoctorTracker](https://doctor-tracker-frontend.onrender.com/login)     |
+| Backend / Express API   | Render Free web service | [API health endpoint](https://doctor-tracker-api-tg86.onrender.com/api/health) |
+| Database                | MongoDB Atlas           | `doctor_tracker` on `Cluster0`                                                 |
 
 The GitHub repos are deployed separately; the frontend forwards `/api/*` to the standalone backend using the server-side `BACKEND_URL`. The live GitHub Actions smoke tests verified connectivity and protection, and the owner confirmed production login. **Real admin credentials must remain private.**
 
